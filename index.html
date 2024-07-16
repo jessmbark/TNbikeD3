@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TN 2024 Bike Crashes</title>
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="custom.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <script>
+      d3.csv("tnbikesd3.csv")
+    .then(data => {
+      console.log(data)
+       const myChart = d3
+        .select('#my-svg-chart')
+        .append('svg')
+        .attr('width', 640)
+        .attr('height', 640)
+      const individualCharts = myChart
+    .selectAll('rect')
+    .data(data)
+    .join('rect');
+      const gridSize = 20, gap = 2; 
+
+individualCharts
+    .attr('x', (d,i) => {
+        return Math.floor(i%10)*(gridSize+ gap);
+    })
+    .attr('y', (d,i) => {
+        return Math.floor(i/10)*(gridSize+ gap);
+    })
+    .attr('width', gridSize)
+    .attr('height', gridSize)
+      individualCharts
+    .style('fill', d=> {
+        if (d.Type == 'Fatal') {return 'red'}
+        if (d.Type == 'Injury') {return 'orange'}
+        if (d.Type == 'PDO') {return 'gold'}
+    });
+    })
+     
+    </script>
+  </head>
+  <body>
+    <h1>Bicycle crashes recoded in Tennessee during the first six months of 2024</h1>
+    <h4>By: Jessica M. Barker</h4>
+    <p>Each square represents one crash. Red squares represent fatal crashes, yellow squares represent crashes with property damage over $400, and orange squares represent crashes that resulted in an injury.</p>
+    <div id="my-svg-chart"></div>
+
+  </body>
+  <div class="footer">
+    <p>You can find the data on page 36 of <a href="https://www.tn.gov/content/dam/tn/safety/documents/crash_stats/Bicyclist.pdf"> this</a> document.</p>>
+    </div>
+</html>
