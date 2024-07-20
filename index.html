@@ -18,9 +18,9 @@
         .attr('width', 640)
         .attr('height', 640)
       const individualCharts = myChart
-    .selectAll('rect')
+    .selectAll('g')
     .data(data)
-    .join('rect');
+    .join('g');
       const gridSize = 20, gap = 2; 
 
 individualCharts
@@ -38,6 +38,13 @@ individualCharts
         if (d.Type == 'Injury') {return '#ff8800'}
         if (d.Type == 'PDO') {return '#ffc502'}
     });
+      individualCharts
+            .on('mousemove', function(d,i){
+                d3.select(this).classed('show',true);
+            })
+            .on('mouseout', function(d,i){
+                    d3.select(this).classed('show',false);
+            })
     })
      
     </script>
