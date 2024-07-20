@@ -18,9 +18,9 @@
         .attr('width', 640)
         .attr('height', 640)
       const individualCharts = myChart
-    .selectAll('g')
+    .selectAll('rect')
     .data(data)
-    .join('g');
+    .join('rect');
       const gridSize = 20, gap = 2; 
 
 individualCharts
