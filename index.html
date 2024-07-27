@@ -17,10 +17,6 @@
         .append('svg')
         .attr('width', 640)
         .attr('height', 640)
-      .attr("x", (d,i) => i * 110)
-            .attr("fill", "lightgrey")
-            .on("mouseover", handleMouseOver)
-            .on("mouseout", mouseOut)
       const individualCharts = myChart
     .selectAll('rect')
     .data(data)
@@ -41,27 +37,7 @@ individualCharts
         if (d.Type == 'Fatal') {return '#c11f1f'}
         if (d.Type == 'Injury') {return '#ff8800'}
         if (d.Type == 'PDO') {return '#ffc502'}
-    })
-      const tooltip = d3.select("body")
-            .append("div")
-            .style("position", "absolute")
-            .style("background-color", "white")
-            .style("padding", "5px")
-            .style("border", "1px solid black")
-            .style("display", "none")
-
-        function handleMouseOver(event, d) {
-            d3.select(this).attr("fill", d)
-            tooltip.style("display", "block")
-            tooltip.html(d)
-                .style("left", (event.pageX) + "px")
-                .style("top", (event.pageY) + "px")
-        }
-
-        function mouseOut(event, d) {
-            d3.select(this).attr("fill", "lightgrey")
-            tooltip.style("display", "none")
-        }
+    });
     })
      
     </script>
@@ -74,6 +50,6 @@ individualCharts
 
   </body>
   <div class="footer">
-    <p>You can find the data on the last page of <a href="https://www.tn.gov/content/dam/tn/safety/documents/crash_stats/Bicyclist.pdf"> this</a> document.</p>>
+    <p>You can find the data on page 36 of <a href="https://www.tn.gov/content/dam/tn/safety/documents/crash_stats/Bicyclist.pdf"> this</a> document.</p>>
     </div>
 </html>
