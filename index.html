@@ -26,18 +26,19 @@
 individualCharts
     .attr('x', (d,i) => {
         return Math.floor(i%10)*(gridSize+ gap);
-   })
-   .attr('y', (d,i) => {
+    })
+    .attr('y', (d,i) => {
         return Math.floor(i/10)*(gridSize+ gap);
     })
     .attr('width', gridSize)
-   .attr('height', gridSize)
-    individualCharts
+    .attr('height', gridSize)
+      individualCharts
     .style('fill', d=> {
         if (d.Type == 'Fatal') {return '#c11f1f'}
         if (d.Type == 'Injury') {return '#ff8800'}
         if (d.Type == 'PDO') {return '#ffc502'}
     });
+    })
      
     </script>
   </head>
