@@ -32,13 +32,15 @@ individualCharts
     })
     .attr('width', gridSize)
     .attr('height', gridSize)
-       .attr('title', d => `Type: ${d.Type}`)
       individualCharts
     .style('fill', d=> {
         if (d.Type == 'Fatal') {return '#c11f1f'}
         if (d.Type == 'Injury') {return '#ff8800'}
         if (d.Type == 'PDO') {return '#ffc502'}
-    });
+    })
+      .append("title") // Add title element for tooltip
+            .text(d => `Type: ${d.Type}`);
+        });
     })
      
     </script>
