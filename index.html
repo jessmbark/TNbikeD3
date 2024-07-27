@@ -7,6 +7,19 @@
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="base.css">
     <link rel="stylesheet" href="custom.css">
+    <style>
+      .tooltip {
+        position: absolute;
+        text-align: center;
+        padding: 5px;
+        background: lightgray;
+        border: 1px solid #d3d3d3;
+        border-radius: 5px;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
     <script>
       d3.csv("tnbikesd3.csv")
@@ -38,7 +51,24 @@ individualCharts
         if (d.Type == 'Injury') {return '#ff8800'}
         if (d.Type == 'PDO') {return '#ffc502'}
     })
-    })
+      .on("mouseover", (event, d) => {
+              tooltip.transition()
+                .duration(200)
+                .style("opacity", .9);
+              tooltip.html(`Type: ${d.Type}`)
+                .style("left", (event.pageX + 5) + "px")
+                .style("top", (event.pageY - 28) + "px");
+            })
+            .on("mousemove", (event) => {
+              tooltip.style("left", (event.pageX + 5) + "px")
+                     .style("top", (event.pageY - 28) + "px");
+            })
+            .on("mouseout", () => {
+              tooltip.transition()
+                .duration(500)
+                .style("opacity", 0);
+            });
+        });
      
     </script>
   </head>
