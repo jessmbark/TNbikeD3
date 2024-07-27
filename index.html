@@ -32,6 +32,7 @@ individualCharts
     })
     .attr('width', gridSize)
     .attr('height', gridSize)
+       .attr('title', d => `Type: ${d.Type}`)
       individualCharts
     .style('fill', d=> {
         if (d.Type == 'Fatal') {return '#c11f1f'}
