@@ -23,33 +23,16 @@
     .join('rect');
       const gridSize = 20, gap = 2; 
 
-      individualCharts
-            .attr('cx',(data,index) => {
-                  return Math.floor( index %10)*(gridSize+ gap) + gridSize/2;
-              })
-            .attr('cy',(d,i) => {
-                  return Math.floor(i/10)*(gridSize+ gap) + gridSize/2;
-              })
-            .attr('r', d=> {
-              return (+d.Type/6)*gridSize;
-            })
-            .on('mousemove', function(d,i) {
-              d3.select(this).style('stroke','black')
-            })
-            .on('mouseout', function(d,i) {
-              d3.select(this).style('stroke','transparent')
-            })
-
-//individualCharts
-//    .attr('x', (d,i) => {
- //       return Math.floor(i%10)*(gridSize+ gap);
- //   })
- //   .attr('y', (d,i) => {
-    //    return Math.floor(i/10)*(gridSize+ gap);
-  //  })
- //   .attr('width', gridSize)
- //   .attr('height', gridSize)
- //     individualCharts
+individualCharts
+    .attr('x', (d,i) => {
+        return Math.floor(i%10)*(gridSize+ gap);
+   })
+   .attr('y', (d,i) => {
+        return Math.floor(i/10)*(gridSize+ gap);
+    })
+    .attr('width', gridSize)
+   .attr('height', gridSize)
+    individualCharts
     .style('fill', d=> {
         if (d.Type == 'Fatal') {return '#c11f1f'}
         if (d.Type == 'Injury') {return '#ff8800'}
